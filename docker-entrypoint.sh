@@ -62,4 +62,4 @@ fi
 chown -R znc:znc "$DATADIR"
 
 # Start ZNC.
-exec sudo -u znc znc --foreground --datadir="$DATADIR" $@
+exec sudo -u znc znc --foreground --datadir="$DATADIR" $@ | while read -r line ; do echo "$(date "+%F %T%z") $line" ; done ;
