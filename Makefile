@@ -7,11 +7,11 @@ build:
 
 .PHONY: run
 run:
-	docker run --restart=always -d -p 29492:6667 --name $(NAME) -v ${HOME}/.znc:/znc-data ${USER}/znc
+	docker run --restart=always -d -p 29492:6667 --name $(NAME) -v /etc/localtime:/etc/localtime:ro -v ${HOME}/.znc:/znc-data ${USER}/znc
 
 .PHONY: debug
 debug:
-	docker run -it -p 29492:6667 --name $(NAME)-debug -v ${HOME}/.znc:/znc-data ${USER}/znc
+	docker run -it -p 29492:6667 --name $(NAME)-debug -v /etc/localtime:/etc/localtime:ro -v ${HOME}/.znc:/znc-data ${USER}/znc
 
 start:
 	docker start $(NAME)
